@@ -27,3 +27,4 @@ jobs:
 
     - name: echo file
       run:  cat ./artifacts/hello.txt
+      
