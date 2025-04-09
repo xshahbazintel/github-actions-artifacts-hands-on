@@ -5,14 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
     - name: Create a text file
       run: echo "Hello, world!" > hello.txt
-
     - name: Archive text file
       uses: actions/upload-artifact@v4
       with:
@@ -22,13 +19,10 @@ jobs:
      needs: build
      runs-on: ubuntu-latest
      steps:
-       - name: download
+       - name: Download text file
          uses: actions/download-artifact@v4
          with:
            name: hello-artifact
            path: ./artifacts
-       - name: echo file
-         run:  |
-            ls -lr 
-            ls -lr ./artifacts/
-            cat ./artifacts/hello.txt
+       - name: Display content of the text file
+         run: cat ./artifacts/hello.txt
